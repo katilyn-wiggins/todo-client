@@ -49,3 +49,17 @@ form {
   justify-content: center;
   align-items: center;
 }
+
+.todos {
+  border: 1px solid black;
+  background: lightblue;
+  border-radius: 2px;
+  margin: 10px;
+  padding: 5px;
+  cursor: pointer;
+}
+
+.completed {
+  text-decoration: line-through;
+  background-color: coral;
+}

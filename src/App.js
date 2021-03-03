@@ -11,6 +11,7 @@ import {
   getUserFromLocalStorage,
   putUserInLocalStorage
 } from './local-storage-utils.js';
+import PrivateRoute from './Components/private-route.js';
 
 export default class App extends React.Component {
   state = {
@@ -22,11 +23,16 @@ export default class App extends React.Component {
 
     putUserInLocalStorage(user);
   };
+
+  handleUserLogout = () => {
+    this.handleUserChange();
+  };
+
   render() {
     return (
       <div>
         <Router>
-          <Header />
+          <Header handleUserLogout={this.handleUserLogout} />
           <Switch>
             <Route
               path="/"
@@ -53,9 +59,10 @@ export default class App extends React.Component {
                 />
               )}
             />
-            <Route
+            <PrivateRoute
               path="/todos"
               exact
+              token={this.state.user && this.state.user.token}
               render={(routerProps) => (
                 <Todos user={this.state.user} {...routerProps} />
               )}
